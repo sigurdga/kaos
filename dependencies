@@ -1,3 +1,7 @@
 nasm
 qemu
 libisoburn
+multirust
+# multirust update nightly
+# multirust default nightly
+cargo

@@ -1,0 +1,8 @@
+[package]
+name = "kaos"
+version = "0.1.0"
+authors = ["Sigurd Gartmann <sigurdga@sigurdga.no>"]
+
+[lib]
+crate-type = ["staticlib"]
+
