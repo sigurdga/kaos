@@ -1,6 +1,9 @@
-#![feature(no_std, lang_items)]
+#![feature(no_std, lang_items, const_fn, unique)]
 #![no_std]
 extern crate rlibc;
+
+#[macro_use]
+mod vga_buffer;
 
 #[no_mangle]
 pub extern fn rust_main() {
@@ -14,10 +17,7 @@ pub extern fn rust_main() {
         hello_colored[i*2] = *char_byte;
     }
 
-    // write `Hello World!` to the center of the VGA text buffer
-    let buffer_ptr = (0xb8000 + 1988) as *mut _;
-    unsafe { *buffer_ptr = hello_colored };
-
+    vga_buffer::print_something();
     loop{}
 }
 
