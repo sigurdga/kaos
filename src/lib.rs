@@ -1,6 +1,7 @@
 #![feature(no_std, lang_items, const_fn, unique, core_str_ext)]
 #![no_std]
 extern crate rlibc;
+extern crate spin;
 
 #[macro_use]
 mod vga_buffer;
@@ -8,16 +9,8 @@ mod vga_buffer;
 #[no_mangle]
 pub extern fn rust_main() {
     // ATTENTION: we have a very small stack and no guard page
-
-    let hello = b"Hello World!";
-    let color_byte = 0x1f; // white foreground, blue background
-
-    let mut hello_colored = [color_byte; 24];
-    for (i, char_byte) in hello.into_iter().enumerate() {
-        hello_colored[i*2] = *char_byte;
-    }
-
-    vga_buffer::print_something();
+    vga_buffer::clear_screen();
+    println!("Hello World{}", "!");
     loop{}
 }
 
